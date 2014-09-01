@@ -23,17 +23,17 @@ else:
 if not "bombs" in form:
     error += "Expected bombs GET parameter\n";
 else:
-    bombs = int(form["nodes"].value)
+    bombs = int(form["bombs"].value)
 
 if not "edges" in form:
     error += "Expected edges GET parameter\n";
 else:
-    edges = int(form["nodes"].value)
+    edges = int(form["edges"].value)
 
 if not "maxc" in form:
     error += "Expected maxc GET parameter\n";
 else:
-    maxc = int(form["nodes"].value)
+    maxc = int(form["maxc"].value)
 
 if not "seed" in form:
     seed = int(time())
@@ -46,6 +46,6 @@ if error != '':
 else:
     bashCommand = "/var/www/akhmedov.org/bomboleo/gen/delaunay/gen.sh %d %d %d %d %d" % (nodes, bombs, edges, maxc, seed)
     import subprocess
-    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+    process = subprocess.Popen(["/var/www/akhmedov.org/bomboleo/gen/delaunay/gen.sh"], stdout=subprocess.PIPE)
     output = process.communicate()[0]
     print(output)
