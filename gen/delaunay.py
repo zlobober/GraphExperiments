@@ -1,5 +1,6 @@
 import cgitb
 import sys
+from json import dumps
 from time import time
 cgitb.enable()
 
@@ -39,8 +40,12 @@ if not "seed" in form:
 else:
     seed = int(form["seed"].value)
 
-bashCommand = "/var/www/akhmedov.org/bomboleo/gen/delaunay/gen.sh %d %d %d %d %d" % (nodes, bombs, edges, maxc, seed)
-import subprocess
-process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-output = process.communicate()[0]
-print(output)
+if error != '':
+    result["error"] = error
+    print(dumps(result))
+else:
+    bashCommand = "/var/www/akhmedov.org/bomboleo/gen/delaunay/gen.sh %d %d %d %d %d" % (nodes, bombs, edges, maxc, seed)
+    import subprocess
+    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+    output = process.communicate()[0]
+    print(output)
