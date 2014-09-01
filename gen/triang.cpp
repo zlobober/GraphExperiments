@@ -208,7 +208,7 @@ int main(int argc, char* argv[])
     vector<vt> P(n);
     for (int i = 0; i < n; i++)
         assert(scanf("%d %d", &P[i].x, &P[i].y)), M[P[i]] = i;
-    printf("var data = {\n\t'nodes' : [\n");
+    printf("document.data = {\n\t'nodes' : [\n");
     for (int i = 0; i < n; i++)
         printf("\t\t[%d, %d]%c\n", P[i].x, P[i].y, ", "[i + 1 == n]);
     vector<vt> C = convex(P);
@@ -219,8 +219,8 @@ int main(int argc, char* argv[])
             add_edge(D[j], D[j + 1]);
     }
     triangulate_convex(C, P);
-    printf("],\n\t'edges': {\n");
+    printf("],\n\t'edges': [\n");
     for (int i = 0; i < min(pt, m); i++)
         printf("\t\t[%d, %d]%c\n", ed[i].first, ed[i].second, ", "[i + 1 == min(pt, m)]);
-    printf("\t}\n}\n");
+    printf("\t]\n}\n");
 }
