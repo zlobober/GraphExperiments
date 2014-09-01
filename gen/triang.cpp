@@ -3,6 +3,7 @@
 #include <cassert>
 #include <algorithm>
 #include <map>
+#include <cmath>
 using namespace std;
 
 typedef long long llong;
@@ -13,6 +14,10 @@ const int N = 200500;
 int myrand(int a, int b)
 {
     return rand() % (b - a + 1) + a;
+}
+
+inline int abs(long long a) {
+    return a > 0 ? a : -a; 
 }
 
 struct vt
