@@ -1,6 +1,7 @@
 import cgitb
 import sys
 from json import dumps
+from os import popen
 from time import time
 cgitb.enable()
 
@@ -45,7 +46,5 @@ if error != '':
     print(dumps(result))
 else:
     bashCommand = "/var/www/akhmedov.org/bomboleo/gen/delaunay/gen.sh %d %d %d %d %d" % (nodes, bombs, edges, maxc, seed)
-    import subprocess
-    process = subprocess.Popen(["/var/www/akhmedov.org/bomboleo/gen/delaunay/gen.sh"], stdout=subprocess.PIPE)
-    output = process.communicate()[0]
+    output = os.popen(bashCommand).read()
     print(output)
