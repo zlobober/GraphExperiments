@@ -3,7 +3,6 @@
 #include <cassert>
 #include <algorithm>
 #include <map>
-#include <cmath>
 using namespace std;
 
 typedef long long llong;
@@ -253,7 +252,7 @@ int main(int argc, char* argv[])
                     swap(b[0], b[1]);
                 vt va = P[a[1]] - P[a[0]];
                 vt vb = P[b[1]] - P[b[0]];
-                if (fabs(atan2(va ^ vb, va * vb)) < 3.1415926 / 10)
+                if (abs(atan2(va ^ vb, va * vb)) < 3.1415926 / 10)
                 {
                     E.erase(E.begin() + ((rand() & 1) ? i : j));
                     goto here;
