@@ -5,9 +5,9 @@ if [ ! -f ./triang ]; then
     g++ triang.cpp -o triang -O2
 fi
 
-if (( $# < 3 )); then
-    echo "./gen.sh <number of nodes> <number of edges> <maximal coordinates>"
+if (( $# < 4 )); then
+    echo "./gen.sh <number of nodes> <number of bombs> <number of edges> <maximal coordinates>"
     exit 1
 fi
 
-./gen_rand $1 $3 | ./triang $2
+./gen_rand $1 $4 | ./triang $3 $2

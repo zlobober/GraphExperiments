@@ -3,6 +3,7 @@
 #include <cassert>
 #include <algorithm>
 #include <map>
+#include <cmath>
 using namespace std;
 
 typedef long long llong;
@@ -202,15 +203,21 @@ vector<vt> convex(vector<vt> A)
 int main(int argc, char* argv[])
 {
     int m = atoi(argv[1]);
+    int k = atoi(argv[2]);
     int n;
     assert(scanf("%d", &n));
+    vector<int> bombs(n, 0);
+    for (int i = 0; i < k; i++)
+        bombs[i] = 1;
+    random_shuffle(bombs.begin(), bombs.end());
+
     assert(n < N);
     vector<vt> P(n);
     for (int i = 0; i < n; i++)
         assert(scanf("%d %d", &P[i].x, &P[i].y)), M[P[i]] = i;
     printf("document.data = {\n\t'nodes' : [\n");
     for (int i = 0; i < n; i++)
-        printf("\t\t[%d, %d]%c\n", P[i].x, P[i].y, ", "[i + 1 == n]);
+        printf("\t\t[%d, %d, %d]%c\n", P[i].x, P[i].y, bombs[i], ", "[i + 1 == n]);
     vector<vt> C = convex(P);
     for (int i = (C.size() <= 2); i < C.size(); i++)
     {
@@ -220,7 +227,41 @@ int main(int argc, char* argv[])
     }
     triangulate_convex(C, P);
     printf("],\n\t'edges': [\n");
-    for (int i = 0; i < min(pt, m); i++)
-        printf("\t\t[%d, %d]%c\n", ed[i].first, ed[i].second, ", "[i + 1 == min(pt, m)]);
+    vector<pair<int, int> > E(ed, ed + min(m, pt));
+    random_shuffle(E.begin(), E.end());
+    for (int i = 0; i < E.size(); i++)
+    {
+        here:;
+        if (i == E.size())
+            break;
+        for (int j = 0; j < E.size(); j++)
+        {
+            if (i == j)
+                continue;
+            int a[2] = {E[i].first, E[i].second};
+            int b[2] = {E[j].first, E[j].second};
+            int c = -1;
+            for (int u = 0; u < 2; u++)
+                for (int v = 0; v < 2; v++)
+                    if (a[u] == b[v])
+                        c = a[u];
+            if (c != -1)
+            {
+                if (a[1] == c)
+                    swap(a[0], a[1]);
+                if (b[1] == c)
+                    swap(b[0], b[1]);
+                vt va = P[a[1]] - P[a[0]];
+                vt vb = P[b[1]] - P[b[0]];
+                if (fabs(atan2(va ^ vb, va * vb)) < 3.1415926 / 10)
+                {
+                    E.erase(E.begin() + ((rand() & 1) ? i : j));
+                    goto here;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < E.size(); i++)
+        printf("\t\t[%d, %d]%c\n", E[i].first, E[i].second, ", "[i + 1 == min(pt, m)]);
     printf("\t]\n}\n");
 }
