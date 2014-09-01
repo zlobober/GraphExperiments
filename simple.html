@@ -208,7 +208,7 @@
 			$(document).ready(function() {
 				$.getJSON(
 					"gen/delaunay.py", 
-					{nodes:100, bombs:15, edges: 300, maxc:800, cross:20}, 
+					{nodes:100, bombs:15, edges: 300, maxc:800, cross:15}, 
 					function(response) {
 						data = response; 
 						solveData();
