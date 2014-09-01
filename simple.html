@@ -161,16 +161,7 @@
 				DRAW_ITERATION++; 
 			}
 
-			window.onload = function() {
-				$.get(
-					"http://akhmedov.org/bomboleo/gen/delaunay.py", 
-					{nodes:100, bombs:15, edges: 300, maxc:800}, 
-					function(response) {
-						alert(response);
-						data = response; 
-					}
-				); 
-
+			function solveData() {
 				canvas = document.getElementById('cv'),
 				elemLeft = canvas.offsetLeft,
 				elemTop = canvas.offsetTop,
@@ -212,6 +203,18 @@
 				});
 
 				setInterval(draw, 20); 
+			}
+
+			window.onload = function() {
+				$.get(
+					"http://akhmedov.org/bomboleo/gen/delaunay.py", 
+					{nodes:100, bombs:15, edges: 300, maxc:800}, 
+					function(response) {
+						alert(response);
+						data = response; 
+						solveData();
+					}
+				); 
 			}
 		</script>
 	</head>
