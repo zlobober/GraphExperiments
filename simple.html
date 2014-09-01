@@ -5,7 +5,7 @@
 				background: #faf8ef; 	
 			}
 		</style>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script>
 			var data = document.data;
 			var elements = [];
@@ -206,7 +206,7 @@
 			}
 
 			window.onload = function() {
-				$.get(
+				$.getJSON(
 					"http://akhmedov.org/bomboleo/gen/delaunay.py", 
 					{nodes:100, bombs:15, edges: 300, maxc:800}, 
 					function(response) {
