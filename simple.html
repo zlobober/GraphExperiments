@@ -5,7 +5,7 @@
 				background: #faf8ef; 	
 			}
 		</style>
-		<script src="hui.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script>
 			var data = document.data;
 			var elements = [];
@@ -162,6 +162,15 @@
 			}
 
 			window.onload = function() {
+				$.get(
+					"gen/delaunay.py", 
+					{nodes:100, bombs:15, edges: 300, maxc:800}, 
+					function(response) {
+						data = response; 
+					}, 
+					"json"
+				); 
+
 				canvas = document.getElementById('cv'),
 				elemLeft = canvas.offsetLeft,
 				elemTop = canvas.offsetTop,
