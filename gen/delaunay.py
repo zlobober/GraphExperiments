@@ -46,5 +46,5 @@ if error != '':
     print(dumps(result))
 else:
     bashCommand = "/var/www/akhmedov.org/bomboleo/gen/delaunay/gen.sh %d %d %d %d %d" % (nodes, bombs, edges, maxc, seed)
-    output = os.popen(bashCommand).read()
+    output = popen(bashCommand).read()
     print(output)
