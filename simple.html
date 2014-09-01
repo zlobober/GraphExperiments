@@ -5,7 +5,7 @@
 				background: #faf8ef; 	
 			}
 		</style>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="jquery-2.1.1.js"></script>
 		<script>
 			var data = document.data;
 			var elements = [];
@@ -208,7 +208,7 @@
 			$(document).ready(function() {
 				alert('onload');
 				$.getJSON(
-					"gen/delaunay.py", 
+					"file:///home/lafa/GraphExperiments/gen/delaunay.py", 
 					{nodes:100, bombs:15, edges: 300, maxc:800}, 
 					function(response) {
 						alert('response');
