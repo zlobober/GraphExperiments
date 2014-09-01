@@ -1,4 +1,4 @@
-pushd /var/www/akhmedov.org/bomboleo/gen/delaunay
+pushd /var/www/akhmedov.org/bomboleo/gen/delaunay >/dev/null
 
 if [ ! -f ./gen_rand ]; then
     g++ gen_rand.cpp -o gen_rand -O2
@@ -20,4 +20,4 @@ tail -n $1 del_nodes.txt > del2_nodes.txt
 timeout 5.0 ./delaunay del2 > /dev/null
 timeout 5.0 ./del $3 $2 del_nodes.txt del2_elements.txt $5
 
-popd
+popd >/dev/null
