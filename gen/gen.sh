@@ -2,7 +2,10 @@ if [ ! -f ./gen_rand ]; then
     g++ gen_rand.cpp -o gen_rand -O2
 fi
 if [ ! -f ./triang ]; then
-    g++ triang.cpp -o triang -O2
+    g++ delaunay.cpp -o delaunay -O2
+fi
+if [ ! -f ./del ]; then
+    g++ del.cpp -o del -O2
 fi
 
 if (( $# < 4 )); then
@@ -10,4 +13,7 @@ if (( $# < 4 )); then
     exit 1
 fi
 
-./gen_rand $1 $4 | ./triang $3 $2
+./gen_rand $1 $4 > del_nodes.txt
+tac del_nodes.txt | head -n -1 | tac >del2_nodes.txt
+./delaunay del2
+./del $3 $2 del_nodes.txt del2_elements.txt
