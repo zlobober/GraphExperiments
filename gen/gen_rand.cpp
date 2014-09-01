@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <set>
 #include <algorithm>
+#include <cstdlib>
 using namespace std;
 
 set<pair<int, int> > S;

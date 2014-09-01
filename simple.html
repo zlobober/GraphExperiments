@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<script src="gen/hui.txt"></script>
+		<script>
+			function Circle(x, y, r) { 
+				this.x = x; 
+				this.y = y; 
+				this.r = r; 
+
+				this.inside = function(x, y) {
+					return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y) <= this.r * this.r; 
+				}
+			}
+
+			window.onload = function() {
+				var canvas = document.getElementById('cv'),
+				    elemLeft = canvas.offsetLeft,
+				    elemTop = canvas.offsetTop,
+				    context = canvas.getContext('2d'),
+				    elements = [];
+
+				// Add event listener for `click` events.
+				canvas.addEventListener('click', function(event) {
+				    var x = event.pageX - elemLeft,
+				        y = event.pageY - elemTop;
+
+				    // Collision detection between clicked offset and element.
+				    elements.forEach(function(element) {
+				        if (element.inside(x, y)) {
+				            alert('clicked an element');
+				        }
+				    });
+
+				}, false);
+
+				data.nodes.forEach(function(point) {
+					elements.push(new Circle(point[0], point[1], 10));
+				});
+
+				context.fillStyle = 'red';
+				// Render elements.
+				elements.forEach(function(element) {
+					context.beginPath();      
+					context.arc(element.x, element.y, element.r, 0, Math.PI * 2, true);            
+					context.fill();
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id='cv' width=1000 height=1000></canvas>
+	</body>
+</html>
