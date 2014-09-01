@@ -206,6 +206,7 @@
 			}
 
 			window.onload = function() {
+				alert('onload');
 				$.getJSON(
 					"http://akhmedov.org/bomboleo/gen/delaunay.py", 
 					{nodes:100, bombs:15, edges: 300, maxc:800}, 
@@ -214,7 +215,9 @@
 						data = response; 
 						solveData();
 					}
-				); 
+				).done(function(response) {
+					alert(response);
+				});
 			}
 		</script>
 	</head>
