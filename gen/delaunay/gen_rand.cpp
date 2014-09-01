@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
 {
     int n = atoi(argv[1]);
     int mx = atoi(argv[2]);
+    srand(atoi(argv[3]));
     printf("%d\n", n);
     for (int i = 0; i < n; i++)
     {

@@ -55,11 +55,12 @@ struct vt
 
 int main(int argc, char* argv[])
 {
-    assert(argc == 5);
+    assert(argc == 6);
     int m = atoi(argv[1]);
     int k = atoi(argv[2]);
     FILE* pts = fopen(argv[3], "r");
     FILE* tri = fopen(argv[4], "r");
+    srand(atoi(argv[5]));
     int n;
     assert(fscanf(pts, "%d", &n));
     vector<int> bombs(n, 0);
@@ -69,7 +70,7 @@ int main(int argc, char* argv[])
     vector<vt> P(n);
     for (int i = 0; i < n; i++)
         assert(fscanf(pts, "%d %d", &P[i].x, &P[i].y));;
-    printf("document.data = {\n\t'nodes' : [\n");
+    printf("{\n\t'nodes' : [\n");
     for (int i = 0; i < n; i++)
         printf("\t\t[%d, %d, %d]%c\n", P[i].x, P[i].y, bombs[i], ", "[i + 1 == n]);
     printf("],\n\t'edges': [\n");
