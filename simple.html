@@ -1,15 +1,26 @@
 <html>
 	<head>
-		<script src="gen/hui.txt"></script>
+		<script src="hui.js"></script>
 		<script>
+			var data = document.data;
 			function Circle(x, y, r) { 
 				this.x = x; 
 				this.y = y; 
 				this.r = r; 
+				this.neighbours = []; 
 
 				this.inside = function(x, y) {
 					return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y) <= this.r * this.r; 
 				}
+
+				this.addNeighbour = function(num) {
+					this.neighbours.push(num); 
+				}
+			}
+
+			function Edge(u, v) {
+				this.u = u; 
+				this.v = v; 
 			}
 
 			window.onload = function() {
@@ -17,7 +28,8 @@
 				    elemLeft = canvas.offsetLeft,
 				    elemTop = canvas.offsetTop,
 				    context = canvas.getContext('2d'),
-				    elements = [];
+				    elements = [], 
+				    edges = []; 
 
 				// Add event listener for `click` events.
 				canvas.addEventListener('click', function(event) {
@@ -37,8 +49,20 @@
 					elements.push(new Circle(point[0], point[1], 10));
 				});
 
+				data.edges.forEach(function(edge) {
+					edges.push(new Edge(edge[0], edge[1]));
+				});
+
+				edges.forEach(function(edge) {
+					circleu = elements[edge.u];
+					circlev = elements[edge.v];
+					context.beginPath();
+					context.moveTo(circleu.x, circleu.y);
+					context.lineTo(circlev.x, circlev.y);
+					context.stroke();
+				}); 
+
 				context.fillStyle = 'red';
-				// Render elements.
 				elements.forEach(function(element) {
 					context.beginPath();      
 					context.arc(element.x, element.y, element.r, 0, Math.PI * 2, true);            
