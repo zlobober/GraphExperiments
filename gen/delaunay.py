@@ -36,6 +36,11 @@ if not "maxc" in form:
 else:
     maxc = int(form["maxc"].value)
 
+if not "cross" in form:
+    cross = 0
+else:
+    cross = int(form["cross"].value) 
+
 if not "seed" in form:
     seed = int(time())
 else:
@@ -45,6 +50,6 @@ if error != '':
     result["error"] = error
     print(dumps(result))
 else:
-    bashCommand = "/var/www/akhmedov.org/bomboleo/gen/delaunay/gen.sh %d %d %d %d %d" % (nodes, bombs, edges, maxc, seed)
+    bashCommand = "/var/www/akhmedov.org/bomboleo/gen/delaunay/gen.sh %d %d %d %d %d %d" % (nodes, bombs, edges, maxc, cross, seed)
     output = popen(bashCommand).read()
     print(output)
