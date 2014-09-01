@@ -205,20 +205,20 @@
 				setInterval(draw, 20); 
 			}
 
-			window.onload = function() {
+			$(document).ready(function() {
 				alert('onload');
 				$.getJSON(
 					"gen/delaunay.py", 
 					{nodes:100, bombs:15, edges: 300, maxc:800}, 
 					function(response) {
-						alert(response);
+						alert('response');
 						data = response; 
 						solveData();
 					}
 				).done(function(response) {
-					alert(response);
+					alert('response');
 				});
-			}
+			});
 		</script>
 	</head>
 	<body>
