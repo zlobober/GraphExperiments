@@ -70,10 +70,10 @@ int main(int argc, char* argv[])
     vector<vt> P(n);
     for (int i = 0; i < n; i++)
         assert(fscanf(pts, "%d %d", &P[i].x, &P[i].y));;
-    printf("{\n\t'nodes' : [\n");
+    printf("{\n\t\"nodes\": : [\n");
     for (int i = 0; i < n; i++)
         printf("\t\t[%d, %d, %d]%c\n", P[i].x, P[i].y, bombs[i], ", "[i + 1 == n]);
-    printf("],\n\t'edges': [\n");
+    printf("],\n\t\"edges\": [\n");
     vector<pair<int, int> > E;
     while (true)
     {
