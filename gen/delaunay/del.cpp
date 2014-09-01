@@ -64,6 +64,8 @@ int tmp[N];
 vector<pair<int, int> > ed;
 bool try_cross(int a, int b)
 {
+    sort(E[a].begin(), E[a].end());
+    sort(E[b].begin(), E[b].end());
     int q = set_intersection(E[a].begin(), E[a].end(), E[b].begin(), E[b].end(), tmp) - tmp;
     if (q != 2)
         return false;
@@ -163,7 +165,7 @@ int main(int argc, char* argv[])
     {
         E[ed[i].first].push_back(ed[i].second);
         E[ed[i].second].push_back(ed[i].first);
-    }
+    } 
 
     for (int i = 0; i < c; i++)
     {
